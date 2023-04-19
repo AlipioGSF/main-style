@@ -1,0 +1,10 @@
+#search{
+    display: flex;
+    width: 60vw;
+    margin: 1rem auto;
+    justify-content: space-between;
+}
+
+#search input{
+    width: 25rem;
+}
