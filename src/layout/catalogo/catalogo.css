@@ -1,0 +1,37 @@
+.catalogo{
+    display: flex;
+    width: 60vw;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.produto{
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
+    height: 30rem;
+    background-color: rebeccapurple;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.produto h2,h3{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.produto h2{
+    font-size: 1.1rem;
+    background-color: red;
+}
+.produto h3{
+    font-size: 1rem;
+    background-color: royalblue;
+}
+
+.produto img{
+    max-width: 15rem;
+    max-height: 18rem;
+}
