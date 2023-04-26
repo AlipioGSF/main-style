@@ -1,6 +1,7 @@
-import {useContext, useState, useEffect} from 'react'
+import {useContext} from 'react'
 import { ProductsContext } from '../../Contexts/Products'
-import "./catalogo.css";
+import ProductCard from '../../Components/productCard';
+import './catalogo.css';
 
 const Catalogo = () => {
 
@@ -17,16 +18,7 @@ const Catalogo = () => {
             search?
             products.map((p) => (
                 p.title.toLowerCase().includes(search.toLowerCase())?
-                <div className='w3-card produto'>
-                    <div className="imgProduto" style={{backgroundImage: `url(${p.image})`}}></div>
-                    <div class="descricao">
-                        <h5>{p.title}</h5>
-                        <div class="priceCart">
-                            <h6>R${p.price}</h6>
-                            <button className='w3-button w3-hover-blue w3-tiny w3-green'>add to Cart</button>
-                        </div>
-                    </div>
-                </div>
+                <ProductCard image={p.image} title={p.title} price={p.price} id={p.id}/>
                 :null
             )):null 
         }
@@ -34,27 +26,9 @@ const Catalogo = () => {
         {
             products.map((p) => (
             category === null?
-                <div className='w3-card produto'>
-                    <div className="imgProduto" style={{backgroundImage: `url(${p.image})`}}></div>
-                    <div class="descricao">
-                        <h5>{p.title}</h5>
-                        <div class="priceCart">
-                            <h6>R${p.price}</h6>
-                            <button className='w3-button w3-hover-blue w3-tiny w3-green'>add to Cart</button>
-                        </div>
-                    </div>
-                </div>
+            <ProductCard image={p.image} title={p.title} price={p.price} id={p.id}/>
             :category === p.category?
-                <div className='w3-card produto'>
-                    <div className="imgProduto" style={{backgroundImage: `url(${p.image})`}}></div>
-                    <div class="descricao">
-                        <h5>{p.title}</h5>
-                        <div class="priceCart">
-                            <h6>R${p.price}</h6>
-                            <button className='w3-button w3-hover-blue w3-tiny w3-green'>add to Cart</button>
-                        </div>
-                    </div>
-                </div>
+            <ProductCard image={p.image} title={p.title} price={p.price} id={p.id}/>
             :null
         ))}
 

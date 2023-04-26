@@ -1,0 +1,11 @@
+#cartBtn{
+    position: absolute;
+    right: 0;
+    width: 4rem;
+    height: 4rem;
+    border: none;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-color: greenyellow;
+    box-shadow: 1px 1px 3px black;
+}

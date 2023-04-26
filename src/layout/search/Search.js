@@ -1,5 +1,6 @@
 import {useContext}from 'react'
 import { ProductsContext } from '../../Contexts/Products'
+import CartButton from '../../Components/CartButton';
 import "./search.css";
 const Search = () => {
 
@@ -11,7 +12,7 @@ const Search = () => {
         <input class="w3-input w3-border" name="first" type="text" value={search} onChange={({target}) => {setSearch(target.value)} } placeholder="Product"/>    
         <div class="w3-dropdown-hover">
           <button class="w3-button w3-black">Categories</button>
-          <div class="w3-dropdown-content w3-bar-block w3-border">
+          <div class="w3-dropdown-content w3-bar-block w3-border w3-right">
             <button onClick={()=>setCategory(null)} className='w3-button w3-bar'>none</button>
               {
                 categories && categories.map((c) => (
@@ -20,6 +21,7 @@ const Search = () => {
               }
           </div>
         </div>
+        <CartButton/>
       </section>
     </>
   )

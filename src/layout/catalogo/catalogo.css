@@ -1,10 +1,9 @@
 .catalogo{
-    display: flex;
     width: 60vw;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 3fr;
     gap: 1rem;
+    margin: 0 auto;
 }
 
 .descricao{

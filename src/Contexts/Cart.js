@@ -1,25 +1,38 @@
-import { createContext } from "react";
+import { createContext, useState, useContext } from "react";
+import { ProductsContext } from "./Products";
+
 
 export const CartContext = createContext();
 
 export function Cart({children}){
 
-    const [items, setItems] = ([]);
+    const {products} = useContext(ProductsContext);
+
+    const [prod, setProd] = useState([]);
+    const [view, setView] = useState(false);
 
     function addToCart(item){
-        setItems(item);
-    }
+        let valible = true;
+        let currentProd;
+        products.map((p) => (
+            p.id === item?
+            prod.map((pc) => (
+                pc.id === item?valible = false:null
+                ))
+            :null
+            ))
+        }
 
     function removeFromCart(item){
-        items.map((value, index) => (
+        prod.map((value, index) => (
             item === value.title?
-                items.pop(index-1)
+                prod.pop(index-1)
             :null
         ))
     }
 
     return(
-    <CartContext.Provider value={{items, addToCart, removeFromCart}}>
+    <CartContext.Provider value={{prod, addToCart, removeFromCart, view, setView}}>
         {children}
     </CartContext.Provider>)
 }
