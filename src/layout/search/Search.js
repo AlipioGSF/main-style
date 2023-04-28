@@ -1,15 +1,17 @@
 import {useContext}from 'react'
-import { ProductsContext } from '../../Contexts/Products'
+import { ProductsContext} from '../../Contexts/Products'
 import CartButton from '../../Components/CartButton';
 import "./search.css";
+import { CartContext } from '../../Contexts/Cart';
 const Search = () => {
 
   const {categories, setCategory, search, setSearch} = useContext(ProductsContext);
-
+  const {inCart, confirmProd, total} = useContext(CartContext);
   return (
     <>
       <section id='search'>
         <input class="w3-input w3-border" name="first" type="text" value={search} onChange={({target}) => {setSearch(target.value)} } placeholder="Product"/>    
+        <button onClick={()=> alert(confirmProd + " " + total)}>Joker</button>
         <div class="w3-dropdown-hover">
           <button class="w3-button w3-black">Categories</button>
           <div class="w3-dropdown-content w3-bar-block w3-border w3-right">

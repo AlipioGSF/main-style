@@ -8,8 +8,6 @@ import { CartContext } from "./Contexts/Cart";
 
 function App() {
   const { view } = useContext(CartContext);
-  console.log(view);
-
 
   return (
     <>

@@ -1,38 +1,49 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 import { ProductsContext } from "./Products";
 
 
 export const CartContext = createContext();
 
-export function Cart({children}){
+export function Cart({ children }) {
 
-    const {products} = useContext(ProductsContext);
+    const { products } = useContext(ProductsContext);
 
-    const [prod, setProd] = useState([]);
+    const [inCart, setInCart] = useState([]);
     const [view, setView] = useState(false);
+    const [total, setTotal] = useState(0);
+    const [confirmProd, setConfirmProd] = useState([]);
 
-    function addToCart(item){
+    function addToCart(item) {
         let valible = true;
-        let currentProd;
-        products.map((p) => (
-            p.id === item?
-            prod.map((pc) => (
-                pc.id === item?valible = false:null
-                ))
-            :null
+        if (inCart) {
+            inCart.map((pc) => (
+                pc.id === item ? valible = false : null
             ))
         }
-
-    function removeFromCart(item){
-        prod.map((value, index) => (
-            item === value.title?
-                prod.pop(index-1)
-            :null
-        ))
+        if (valible) {
+            products.map((p) => (
+                p.id === item ? setInCart((prev) => [...prev, p]) : null)
+            )
+        }
     }
 
-    return(
-    <CartContext.Provider value={{prod, addToCart, removeFromCart, view, setView}}>
-        {children}
-    </CartContext.Provider>)
+    function remove(item) {
+        setInCart(prev => prev.filter((value, i) => value.id !== item))
+    }
+
+    async function updateConfirmProd(nP) {
+        await setConfirmProd(prev => prev.filter((value, i) => value.prod.id !== nP.prod.id));
+        await setConfirmProd(prev => [...prev, nP]);      
+        await calculateTotal();
+    }
+    
+    async function calculateTotal() {
+        await setTotal(confirmProd.reduce((t,  v) => {return t+v.balance}, 0))
+    }
+    
+
+    return (
+        <CartContext.Provider value={{ inCart, addToCart, remove, view, setView, total, confirmProd,updateConfirmProd, setConfirmProd }}>
+            {children}
+        </CartContext.Provider>)
 }

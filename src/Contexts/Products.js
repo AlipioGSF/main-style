@@ -30,7 +30,6 @@ export function AllProducts({children}){
         getCategories();
     }, []);
 
-    console.log(categories);
     return (
         <ProductsContext.Provider value={{products, category, categories, setCategory, search, setSearch}}>
             {children}
